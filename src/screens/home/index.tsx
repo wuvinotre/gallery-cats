@@ -6,16 +6,33 @@ import {
   Container,
   Header,
   Scroll,
-  Content,
+  ContainerCard,
   Card,
+  ContentCard,
   Text,
   Title,
   Image,
   SubTitle,
 } from "./styled";
 
+type State = {
+  cats: any;
+  state: string;
+};
+
+type Image = {
+  url: string;
+};
+
+type Cat = {
+  id: string;
+  image: Image;
+  name: string;
+  origin: string;
+};
+
 export const HomeScreen = () => {
-  const cats = useSelector((state) => state.cats.cats);
+  const cats = useSelector((state: State) => state.cats.cats);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,14 +49,17 @@ export const HomeScreen = () => {
             lhe dão prazer de ver.
           </SubTitle>
         </Header>
-        <Content>
-          {cats.map((cat) => (
+        <ContainerCard>
+          {cats.map((cat: Cat) => (
             <Card key={cat.id}>
               <Image source={{ uri: cat.image.url }} resizeMode={"stretch"} />
-              {/* <Text>{cat.name}</Text>            */}
+              <ContentCard>
+                <Text>Raça: {cat.name}</Text>
+                <Text>Origem: {cat.origin}</Text>
+              </ContentCard>
             </Card>
           ))}
-        </Content>
+        </ContainerCard>
       </Scroll>
     </Container>
   );
