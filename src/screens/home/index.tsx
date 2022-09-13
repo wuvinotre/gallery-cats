@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCatsFetch } from "../../store/slice";
+import { getCatsFetch } from "../../store/modules/home/slice";
 
 import {
   Container,

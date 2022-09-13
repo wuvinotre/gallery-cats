@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getCats } from "../services/api";
+import { getCats } from "../../../services/api";
 import { getCatsSuccess } from "./slice";
 
 function* workGetCatsFetch(): Generator<any, void, string> {
