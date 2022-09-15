@@ -3,7 +3,7 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #189ab425;
+  background-color: #00000030;
 `;
 
 export const Header = styled.SafeAreaView`
@@ -24,28 +24,29 @@ export const SubTitle = styled.Text`
 
 export const Scroll = styled.ScrollView``;
 
-export const ContainerCard = styled.View`
+export const Content = styled.Pressable`
   align-items: center;
 `;
 
 export const Card = styled.View`
   flex: 1;
+  flex-direction: row;
   width: 90%;
   padding: 10px;
   margin: 10px 0;
-  flex-direction: row;
-
+  background-color: #ffffff50;
   border-radius: 25px;
-  background-color: #05445e25;
+  align-items: center;
 `;
 
 export const ContentCard = styled.View`
-  padding: 0 15px;
+  margin: 0 25px;
+  margin-right: auto;
 `;
 
 export const Image = styled.Image`
-  width: 125px;
-  height: 125px;
+  width: 60px;
+  height: 60px;
   border-radius: 25px;
 `;
 

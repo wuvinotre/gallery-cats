@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { JSXElementConstructor, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCatsFetch } from "../../store/modules/home/slice";
+import Icon from "react-native-vector-icons/Ionicons";
 
 import {
   Container,
   Header,
   Scroll,
-  ContainerCard,
+  Content,
   Card,
   ContentCard,
   Text,
@@ -14,6 +15,10 @@ import {
   Image,
   SubTitle,
 } from "./styled";
+
+type Props = {
+  navigation: JSX.Element;
+};
 
 type State = {
   cats: any;
@@ -31,13 +36,17 @@ type Cat = {
   origin: string;
 };
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }: Props) => {
   const cats = useSelector((state: State) => state.cats.cats);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCatsFetch());
   }, [dispatch]);
+
+  const detailCat = () => {
+    navigation.navigate("Details");
+  };
 
   return (
     <Container>
@@ -49,17 +58,18 @@ export const HomeScreen = () => {
             lhe dão prazer de ver.
           </SubTitle>
         </Header>
-        <ContainerCard>
-          {cats.map((cat: Cat) => (
-            <Card key={cat.id}>
+        {cats.map((cat: Cat) => (
+          <Content key={cat.id} onPress={detailCat}>
+            <Card>
               <Image source={{ uri: cat.image.url }} resizeMode={"stretch"} />
               <ContentCard>
                 <Text>Raça: {cat.name}</Text>
                 <Text>Origem: {cat.origin}</Text>
               </ContentCard>
+              <Icon name="chevron-forward-outline" size={20} />
             </Card>
-          ))}
-        </ContainerCard>
+          </Content>
+        ))}
       </Scroll>
     </Container>
   );

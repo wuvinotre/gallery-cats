@@ -4,7 +4,7 @@ import { getCatsSuccess } from "./slice";
 
 function* workGetCatsFetch(): Generator<any, void, string> {
   const cats = yield call(getCats);
-  const formattedCatsShortened = cats.slice(0, 15);
+  const formattedCatsShortened = cats.slice(0, 30);
   //total de 67 raças
   yield put(getCatsSuccess(formattedCatsShortened));
 }
